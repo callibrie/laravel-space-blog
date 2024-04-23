@@ -9,7 +9,8 @@ Route::get('/', function () {
     return redirect(route('posts'));
 })->name('home');
 
-Route::get('posts', [PostController::class, 'index'])->name('posts');
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 
 /* Auth routes */
