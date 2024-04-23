@@ -1,9 +1,20 @@
 <x-app-layout>
     <div class="bg-white py-16 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <form method="POST" action="{{ route('posts') }}">
+            @php
+                if (isset($post)) {
+                    $action = route('posts.update', $post);
+                } else {
+                    $action = route('posts');
+                }
+            @endphp
+            <form method="POST" action="{{ $action }}">
                 @csrf
 
+                {{-- Switch edit to a PUT request --}}
+                @isset($post)
+                    <input type="hidden" name="_method" value="PUT">
+                @endisset
 
                 <div class="space-y-12">
                     <div class="border-b border-gray-900/10 pb-12">
@@ -15,7 +26,7 @@
                                 <div>
                                     <x-input-label for="title" :value="__('Title')" />
                                     <x-text-input id="title" name="title" type="text" class="mt-1 block w-full"
-                                        required autofocus />
+                                        :value="old('title', $post->title ?? '')" required autofocus />
                                     <x-input-error class="mt-2" :messages="$errors->get('title')" />
                                 </div>
                             </div>
@@ -27,12 +38,15 @@
                                     <textarea id="body" name="body" rows="8"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300
                                          placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 
-                                         sm:text-sm sm:leading-6"></textarea>
+                                         sm:text-sm sm:leading-6">{{ $post->body ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-6 flex items-center justify-end gap-x-6">
+                        {{-- <a href="{{ route('posts.user', auth()->user()) }}"><button type="button" --}}
+                        <a href="{{ route('posts.show', $post) }}"><button type="button"
+                                class="text-sm font-semibold leading-6 text-gray-900">Cancel</button></a>
                         <x-primary-button type="submit">Save</x-primary-button>
                     </div>
             </form>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -11,6 +12,11 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/posts/new', [PostController::class, 'create'])->name('posts.new');
+
+    Route::put('/posts/{post}', [PostController::class, 'update'])
+        ->can('update', 'post')->name('posts.update');
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])
+        ->can('update', 'post')->name('posts.edit');
 });
 
 /* General routes */

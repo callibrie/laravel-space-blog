@@ -55,7 +55,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', [
+            'editPageTitle' => 'Edit Blog Post',
+            'post' => $post
+        ]);
     }
 
     /**
@@ -63,7 +66,10 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $fields = $request->safe()->only('title', 'body');
+        $post->update($fields);
+
+        return redirect()->route('posts');
     }
 
     /**

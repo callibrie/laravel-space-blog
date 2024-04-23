@@ -8,15 +8,15 @@
     @endguest
     <div class="bg-white py-16 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            {{-- @auth
-                @if (auth()->user()->id == $post->user_id)
+            @auth
+                @can('update', $post)
                     <div class="flex justify-end">
                         <a href="{{ route('posts.edit', $post) }}">
                             <x-secondary-button>Edit</x-secondary-button>
                         </a>
                     </div>
-                @endif
-            @endauth --}}
+                @endcan
+            @endauth
             <div class="mx-auto max-w-8xl">
 
                 <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
