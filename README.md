@@ -7,6 +7,47 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Space Blog
+
+Space-themed blog using Laravel 11
+
+### Dependencies
+
+- PHP 8.2
+- Laravel v11.4.0
+- NPM v10.5.0
+- Vite v5.2.10
+- Tailwind CSS v3.2.1
+
+### Starter Kit/ References
+
+- Authentication: (Laravel Breeze)[https://laravel.com/docs/11.x/starter-kits#laravel-breeze] v2.0.2
+- UI: (Tailwind UI)[https://tailwindui.com]
+- Images: (FreePik)[https://www.freepik.com]
+- Image Hosting: (ImgBB)[https://imgbb.com]
+
+### Installation
+
+1. Clone this project locally at (Github)[https://github.com/callibrie/laravel-space-blog.git]
+2. Create a `database.sqlite` file in the `database` folder
+3. Create the `.env` file using the contents of `.env.example`
+4. Install PHP dependencies using `composer install`
+5. Generate an `App Key` using `php artisan key:generate`
+6. Set-up the database and pre-populate with posts using `php artisan migrate --seed`
+
+```
+    mock data:
+    - username: test[1-10] (e.g. `test1`)
+    - password: test1234
+```
+
+7. Install front-end dependencies `npm install` and `npm run build`
+8. Serve locally `php artisan serve`
+
+<details>
+
+<summary>Laravel details</summary>
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -64,3 +105,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+</details>
