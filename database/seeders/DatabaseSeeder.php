@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Post;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        for ($i = 1; $i <= 10; $i++) {
+            $user = User::factory()->create([
+                'name' => 'test' . $i,
+                'email' => 'test' . $i . '@example.com',
+                'password' => bcrypt('test1234'),
+            ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+            Post::factory(3)->for($user)->create([
+                'created_at' => now()->addHours(-1 * 10 * $i)->toDateTimeString(),
+            ]);
+        }
     }
 }
