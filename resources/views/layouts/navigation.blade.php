@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800">
     <!-- Primary Navigation Menu -->
     <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 py-4">
@@ -15,6 +15,14 @@
                     <x-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
                         {{ __('All Posts') }}
                     </x-nav-link>
+
+                    @auth
+                        <a href="{{ route('posts.new') }}">
+                            <x-primary-button
+                                class="bg-indigo-700 hover:bg-indigo-600 focus:bg-indigo-600 active:bg-indigo-900 text-white">Create
+                                a Post</x-primary-button>
+                        </a>
+                    @endauth
                 </div>
             </div>
             <!-- Settings Dropdown -->

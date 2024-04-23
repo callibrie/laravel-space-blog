@@ -25,7 +25,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.edit', [
+            'editPageTitle' => 'New Blog Post',
+        ]);
     }
 
     /**
@@ -33,7 +35,11 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $fields = $request->safe()->only('title', 'body');
+        $fields['user_id'] = auth()->user()->id;
+        Post::create($fields);
+
+        return redirect()->route('posts');
     }
 
     /**
