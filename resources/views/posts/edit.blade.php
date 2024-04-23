@@ -44,9 +44,10 @@
                         </div>
                     </div>
                     <div class="mt-6 flex items-center justify-end gap-x-6">
-                        {{-- <a href="{{ route('posts.user', auth()->user()) }}"><button type="button" --}}
-                        <a href="{{ route('posts.show', $post) }}"><button type="button"
-                                class="text-sm font-semibold leading-6 text-gray-900">Cancel</button></a>
+                        @isset($post)
+                            <a href="{{ route('posts.show', $post) }}"><button type="button"
+                                    class="text-sm font-semibold leading-6 text-gray-900">Cancel</button></a>
+                        @endisset
                         <x-primary-button type="submit">Save</x-primary-button>
                     </div>
             </form>
