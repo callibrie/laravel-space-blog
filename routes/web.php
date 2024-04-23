@@ -4,16 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 
+/* General routes */
 Route::get('/', function () {
-    return view('dashboard');
+    return redirect(route('posts'));
 })->name('home');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 Route::get('posts', [PostController::class, 'index'])->name('posts');
 
+
+/* Auth routes */
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
