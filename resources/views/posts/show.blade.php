@@ -27,7 +27,8 @@
                     </p>
                 </div>
                 <p class="mt-6
-                            text-lg leading-8 text-gray-600">{{ $post->body }}
+                            text-lg leading-8 text-gray-600"
+                    style="white-space: pre-wrap;">{{ $post->body }}
                 </p>
             </div>
         </div>
